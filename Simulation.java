@@ -6,12 +6,19 @@ public class Simulation
 {
     /* Attribute */
     private Insel[] inseln;
-    private int maximalesAlter;
     /* Methoden */
     /**  */
-    public void simuliere(){
+    public Simulation(){
         inseln = new Insel[14];
         generiereInseln();
+        berechneObLebt();
+    }
+
+    public void simuliere(int dauer){
+        for(int i=0;i<dauer;i++){
+         bewegeFinkenVonFeld();
+         paare();
+        }
     }
 
     private void generiereInseln()
@@ -32,7 +39,7 @@ public class Simulation
         inseln[13] = new Insel(10,11,"Darwin");
     }
 
-    public void bewegeFinkenVonFeld(){
+    private void bewegeFinkenVonFeld(){
         for(int i=0;i<inseln.length;i++){
 
             for(int iii=0;iii<inseln[i].felder.length;iii++){
@@ -58,7 +65,7 @@ public class Simulation
         }
     }
 
-    public void pruefeBewegeFinkVonFeld(Finken pFink, int pVegetation, int id ,int id2, Insel il){
+    private void pruefeBewegeFinkVonFeld(Finken pFink, int pVegetation, int id ,int id2, Insel il){
         Random rg=new Random();
         if(pFink.gibSchnabel()<=25){
             if(pVegetation==3){}
@@ -134,7 +141,7 @@ public class Simulation
         }
     }
 
-    public void bewege(Finken pFink, int feldnummer, int fn, Insel pInsel,int pdurchlauf){
+    private void bewege(Finken pFink, int feldnummer, int fn, Insel pInsel,int pdurchlauf){
         Random rg=new Random();
         int z =rg.nextInt(4);
         int durchlauf=pdurchlauf;
@@ -207,7 +214,7 @@ public class Simulation
         }
     }
 
-    public void bewegeAufAndereInsel(Finken pFink, int feldnummer, int fn, Insel pInsel){
+    private void bewegeAufAndereInsel(Finken pFink, int feldnummer, int fn, Insel pInsel){
         int aFeldnummer=feldnummer;
         int aFn=fn;
         Insel aInsel=pInsel;
@@ -226,7 +233,7 @@ public class Simulation
     }
 
     /**  */
-    public void paare(){
+    private void paare(){
         for(int i=0;i<inseln.length;i++){
             for(int ii=0;ii<inseln[i].felder.length;ii++){
                 for (int iii=0;iii<inseln[i].felder[ii].length;iii++){
@@ -237,7 +244,7 @@ public class Simulation
     }
 
     /**  */
-    public void berechneObLebt(){
+    private void berechneObLebt(){
         for(int i=0;i<inseln.length;i++){
             for(int ii=0;ii<inseln[i].felder.length;ii++){
                 for (int iii=0;iii<inseln[i].felder[ii].length;iii++){
@@ -245,10 +252,6 @@ public class Simulation
                 }
             }
         }
-    }
-
-    public int gibMaximalesAlter(){
-        return maximalesAlter; 
     }
 
 }//Ende Klasse: Simulation

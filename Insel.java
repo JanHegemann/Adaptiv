@@ -9,6 +9,7 @@ public class Insel
 	private int hoehe;
 	private int breite;
 	private String name;
+	
   /* Konstruktoren */
   /**  */
   public Insel(int  pGroesseX,int  pGroesseY,String pName)

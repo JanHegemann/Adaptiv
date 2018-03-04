@@ -8,7 +8,6 @@ public class Feld
     protected Finken fink1;
     protected Finken fink2;
     protected Finken fink3;
-    private int maximalesAlter;
 
     public Feld(){
        
@@ -52,7 +51,7 @@ public class Feld
     public void toeteFink(Finken pFink){
         pFink.erhoeheAlter();
         if(pFink.istLebendig()==true){
-            if(pFink.gibAlter()>maximalesAlter){
+            if(pFink.gibAlter()>4){
                 pFink.toete();
             }
         }
