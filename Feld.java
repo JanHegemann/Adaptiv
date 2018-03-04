@@ -38,9 +38,15 @@ public class Feld
     }
 
     public void toeteFinken(){
-        toeteFink(fink1);
-        toeteFink(fink2);
-        toeteFink(fink3);
+        if(fink1!=null){
+            toeteFink(fink1);
+        }
+        else  if(fink2!=null){
+            toeteFink(fink2);
+        } 
+        else  if(fink3!=null){
+            toeteFink(fink3);
+        } 
     }
     
     public void setVegetation(int pVegetation)

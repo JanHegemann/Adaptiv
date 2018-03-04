@@ -264,7 +264,7 @@ public class Simulation
         for(int i=0;i<inseln.length;i++){
             for(int ii=0;ii<inseln[i].felder.length;ii++){
                 for (int iii=0;iii<inseln[i].felder[ii].length;iii++){
-                    inseln[i].felder[ii][iii].pruefePaaren();
+                    inseln[i].felder[ii][iii].toeteFinken();
                 }
             }
         }
