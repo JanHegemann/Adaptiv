@@ -16,6 +16,7 @@ public class Finken
         gencode=new Gene(pGene);
         alter=0;
         berechneSchnabel();
+        lebendig=true;
     }
     /* Methoden */
     /** @return liefert Alter 

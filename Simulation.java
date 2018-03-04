@@ -19,13 +19,17 @@ public class Simulation
            t[i]="MBF4" ;
         }
         for(int i=0;i<laenge;i++){
-           t[i]="CAS1" ;
+           t[i+50]="CAS1" ;
         }
         return t;
     }
 
     public void simuliere(int dauer, int dicke, int laenge){
         inseln[1].felder[1][1].fuegeFinkHinzu(generiereGencode(dicke,laenge ));
+        inseln[1].felder[1][2].fuegeFinkHinzu(generiereGencode(dicke,laenge));
+        inseln[1].felder[1][3].fuegeFinkHinzu(generiereGencode(dicke,laenge ));
+        inseln[1].felder[2][1].fuegeFinkHinzu(generiereGencode(dicke,laenge ));
+        inseln[1].felder[3][1].fuegeFinkHinzu(generiereGencode(dicke,laenge ));
         for(int i=0;i<dauer;i++){
          bewegeFinkenVonFeld();
          paare();
