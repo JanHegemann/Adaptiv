@@ -53,7 +53,7 @@ public class Insel
      return breite   ;
     }
   
-     public String getName ()
+     public String gibName ()
   {
       return name;
   }

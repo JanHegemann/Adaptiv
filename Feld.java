@@ -10,7 +10,6 @@ public class Feld
     protected Finken fink3;
 
     public Feld(){
-       
 
     }
     /* Methoden */
@@ -48,18 +47,22 @@ public class Feld
             toeteFink(fink3);
         } 
     }
-    
+
     public void setVegetation(int pVegetation)
-  {
-      vegetation = pVegetation;
-  }
+    {
+        vegetation = pVegetation;
+    }
 
     public void toeteFink(Finken pFink){
-        pFink.erhoeheAlter();
         if(pFink.istLebendig()==true){
-            if(pFink.gibAlter()>4){
+            pFink.erhoeheAlter();
+            if(pFink.gibAlter()>4){                
                 pFink.toete();
+                
             }
+        }
+        else{
+         pFink=null;   
         }
     }
 
@@ -80,8 +83,7 @@ public class Feld
             }
         }      
     }
-    
-    
+
 
 }//Ende Klasse: Feld
 

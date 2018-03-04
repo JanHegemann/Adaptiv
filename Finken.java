@@ -107,7 +107,7 @@ public class Finken
     }
     
     public void toete(){
-     lebendig=false;   
+     lebendig=false;  
     }
 
 }//Ende Klasse: Finken

@@ -6,6 +6,7 @@ public class Simulation
 {
     /* Attribute */
     private Insel[] inseln;
+    private int [] bewohner;
     /* Methoden */
     /**  */
     public Simulation(){
@@ -19,22 +20,64 @@ public class Simulation
            t[i]="MBF4" ;
         }
         for(int i=0;i<laenge;i++){
-           t[i+50]="CAS1" ;
+           t[i+dicke]="CAS1" ;
         }
         return t;
     }
 
     public void simuliere(int dauer, int dicke, int laenge){
-        inseln[1].felder[1][1].fuegeFinkHinzu(generiereGencode(dicke,laenge ));
-        inseln[1].felder[1][2].fuegeFinkHinzu(generiereGencode(dicke,laenge));
-        inseln[1].felder[1][3].fuegeFinkHinzu(generiereGencode(dicke,laenge ));
-        inseln[1].felder[2][1].fuegeFinkHinzu(generiereGencode(dicke,laenge ));
-        inseln[1].felder[3][1].fuegeFinkHinzu(generiereGencode(dicke,laenge ));
+        inseln[0].felder[100][11].fuegeFinkHinzu(generiereGencode(dicke,laenge ));
+        inseln[0].felder[100][12].fuegeFinkHinzu(generiereGencode(dicke,laenge));
+        inseln[0].felder[100][13].fuegeFinkHinzu(generiereGencode(dicke,laenge ));
+        inseln[1].felder[12][100].fuegeFinkHinzu(generiereGencode(dicke,laenge ));
+        inseln[1].felder[13][100].fuegeFinkHinzu(generiereGencode(dicke,laenge ));
+        bewohner=new int[dauer];
         for(int i=0;i<dauer;i++){
          bewegeFinkenVonFeld();
          paare();
          berechneObLebt();
+         bewohner [i]=auswertung();
         }
+        
+    }
+    
+    public int auswertung(){
+        int t=0;
+        for(int i=0;i<inseln.length;i++){
+            for(int ii=0;ii<inseln[i].felder.length;ii++){
+                for (int iii=0;iii<inseln[i].felder[ii].length;iii++){
+                    if(inseln[i].felder[ii][iii].fink1!=null&&inseln[i].felder[ii][iii].fink2!=null&&inseln[i].felder[ii][iii].fink3!=null){
+                        System.out.println("Auf Insel " +inseln[i].gibName()+" Auf dem Feld "+ ii +" zu "+ iii+" leben 3 Finken");
+                        t=t+3;
+                    }
+                    else if(inseln[i].felder[ii][iii].fink1!=null&&inseln[i].felder[ii][iii].fink2!=null){
+                        System.out.println("Auf Insel " +inseln[i].gibName()+" Auf dem Feld "+ ii +" zu "+ iii+" leben 2 Finken");
+                        t=t+2;
+                    }
+                    else if(inseln[i].felder[ii][iii].fink2!=null&&inseln[i].felder[ii][iii].fink3!=null){
+                        System.out.println("Auf Insel " +inseln[i].gibName()+" Auf dem Feld "+ ii +" zu "+ iii+" leben 2 Finken");
+                        t=t+2;
+                    }
+                    else if(inseln[i].felder[ii][iii].fink1!=null&&inseln[i].felder[ii][iii].fink3!=null){
+                        System.out.println("Auf Insel " +inseln[i].gibName()+" Auf dem Feld "+ ii +" zu "+ iii+" leben 2 Finken");
+                        t=t+2;
+                    }
+                    else if(inseln[i].felder[ii][iii].fink1!=null){
+                        System.out.println("Auf Insel " +inseln[i].gibName()+" Auf dem Feld "+ ii +" zu "+ iii+" lebt 1 Fink");
+                        t=t+1;
+                    }
+                    else if(inseln[i].felder[ii][iii].fink2!=null){
+                        System.out.println("Auf Insel " +inseln[i].gibName()+" Auf dem Feld "+ ii +" zu "+ iii+" lebt 1 Fink");
+                        t=t+1;
+                    }
+                    else if(inseln[i].felder[ii][iii].fink3!=null){
+                        System.out.println("Auf Insel " +inseln[i].gibName()+" Auf dem Feld "+ ii +" zu "+ iii+" lebt 1 Fink");
+                        t=t+1;
+                    }
+                }
+            }
+        }
+        return t;
     }
 
     private void generiereInseln()
@@ -85,6 +128,9 @@ public class Simulation
         Random rg=new Random();
         if(pFink.gibSchnabel()<=25){
             if(pVegetation==3){}
+            if(il.felder[id][id2].fink1!=null&&il.felder[id][id2].fink2!=null&&il.felder[id][id2].fink3!=null){
+                bewege(pFink,id,id2,il,0);
+            }
             if(pVegetation==0){
                 int z=rg.nextInt(2);
                 if(z!=0){
@@ -103,6 +149,9 @@ public class Simulation
         }
         else if(pFink.gibSchnabel()<=50&&pFink.gibSchnabel()>25){
             if(pVegetation==0){}
+            if(il.felder[id][id2].fink1!=null&&il.felder[id][id2].fink2!=null&&il.felder[id][id2].fink3!=null){
+                bewege(pFink,id,id2,il,0);
+            }
             if(pVegetation==3){
                 int z=rg.nextInt(2);
                 if(z!=0){
@@ -121,6 +170,9 @@ public class Simulation
         }
         else if(pFink.gibSchnabel()<=75&&pFink.gibSchnabel()>50){
             if(pVegetation==1){}
+            if(il.felder[id][id2].fink1!=null&&il.felder[id][id2].fink2!=null&&il.felder[id][id2].fink3!=null){
+                bewege(pFink,id,id2,il,0);
+            }
             if(pVegetation==2){
                 int z=rg.nextInt(2);
                 if(z!=0){
@@ -139,6 +191,9 @@ public class Simulation
         }
         else if(pFink.gibSchnabel()<=100&&pFink.gibSchnabel()>75){
             if(pVegetation==2){}
+            if(il.felder[id][id2].fink1!=null&&il.felder[id][id2].fink2!=null&&il.felder[id][id2].fink3!=null){
+                bewege(pFink,id,id2,il,0);
+            }
             if(pVegetation==1){
                 int z=rg.nextInt(2);
                 if(z!=0){
