@@ -18,6 +18,7 @@ public class Simulation
         for(int i=0;i<dauer;i++){
          bewegeFinkenVonFeld();
          paare();
+         berechneObLebt();
         }
     }
 
