@@ -10,11 +10,22 @@ public class Simulation
     /**  */
     public Simulation(){
         inseln = new Insel[14];
-        generiereInseln();
-        berechneObLebt();
+        generiereInseln();        
+    }
+    
+    public String[] generiereGencode(int dicke, int laenge){
+        String [] t=new String[100];
+        for(int i=0;i<dicke;i++){
+           t[i]="MBF4" ;
+        }
+        for(int i=0;i<laenge;i++){
+           t[i]="CAS1" ;
+        }
+        return t;
     }
 
-    public void simuliere(int dauer){
+    public void simuliere(int dauer, int dicke, int laenge){
+        inseln[1].felder[1][1].fuegeFinkHinzu(generiereGencode(dicke,laenge ));
         for(int i=0;i<dauer;i++){
          bewegeFinkenVonFeld();
          paare();
